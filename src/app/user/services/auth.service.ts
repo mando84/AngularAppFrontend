@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Login } from '../models/login';
 import { Register } from '../models/register';
 
-const headerData = { headers: { 'Content-Type': 'application/json' } };
+//const headerData = { headers: { 'Content-Type': 'application/json' } };
 
 @Injectable({
   providedIn: 'root',
@@ -13,10 +13,10 @@ export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
   registerUser(register: Register): Observable<any> {
-    return this.httpClient.post('/api/users/register', register, headerData);
+    return this.httpClient.post('/api/users/register', register);
   }
 
   loginUser(login: Login): Observable<any> {
-    return this.httpClient.post('api/users/login', login, headerData);
+    return this.httpClient.post('api/users/login', login);
   }
 }

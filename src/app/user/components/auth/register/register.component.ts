@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { Register } from 'src/app/user/models/register';
 import { AuthService } from 'src/app/user/services/auth.service';
 
@@ -10,7 +11,7 @@ import { AuthService } from 'src/app/user/services/auth.service';
 export class RegisterComponent implements OnInit {
   register: Register = new Register();
   err: any = {};
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
   //
   ngOnInit(): void {}
   registerSubmit() {
@@ -18,6 +19,7 @@ export class RegisterComponent implements OnInit {
     this.authService.registerUser(this.register).subscribe(
       (res) => {
         console.log(JSON.stringify(res));
+        this.router.navigate(['/users/login']);
       },
       (err) => {
         console.log(JSON.stringify(err));
